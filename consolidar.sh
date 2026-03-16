@@ -1,3 +1,5 @@
+#!/bin/sh
+
 for archivo in entrada/*; do
 cat "$archivo" >> ~/EJ1/EPNro1/salida/$FILENAME
 mv $archivo procesado
