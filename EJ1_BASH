@@ -1,3 +1,5 @@
+#!/bin/sh
+
 echo -e "\033[30;47m Ingrese una opcion (número) del menú: \033[0m 
 \n \033[30;41m1)\033[0m Crear entorno 
 \n \033[30;43m2)\033[0m Correr Proceso 
