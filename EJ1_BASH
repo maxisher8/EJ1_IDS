@@ -3,22 +3,52 @@
 echo -e "\033[30;47m Ingrese una opcion (número) del menú: \033[0m 
 \n \033[30;41m1)\033[0m Crear entorno 
 \n \033[30;43m2)\033[0m Correr Proceso 
-\n \033[30;42m3)\033[0m Ver estado 
-\n \033[30;46m4)\033[0m Logs 
-\n \033[30;44m5)\033[0m Configuración 
+\n \033[30;42m3)\033[0m Lista ordenada por número de padrón
+\n \033[30;46m4)\033[0m Mostrar 10 mejores notas
+\n \033[30;44m5)\033[0m Mostrar mis datos
 \n \033[30;45m6)\033[0m Salir \n "
 export FILENAME=FILENAME.txt
 read RESPUESTA_OP
 case $RESPUESTA_OP in 
     "1") 
         {
+            cd ~
             mkdir EPNro1 ; 
             cd EPNro1 ; 
             mkdir entrada salida procesado ; 
-            cd .. ;
-            mv consolidar.sh EPNro1 ; 
+            cd ../EJ1 ;
+            mv consolidar.sh ~/EPNro1 ; 
         } && echo -e "\033[32mHecho correctamente\033[0m" ;;
+
     "2") 
-        cd EPNro1
-        bash consolidar.sh ;;
+        cd ~/EPNro1
+        bash consolidar.sh & ;;
+
+    "3")
+        if [[ -f ~/EPNro1/salida/FILENAME.txt ]];
+        then 
+            cd ~/EPNro1/salida
+            sort -n -r FILENAME.txt #de mayor a menor
+        else
+            echo "No existe el archivo FILENAME";
+        fi ;;
+    "4")
+        if [[ -f ~/EPNro1/salida/FILENAME.txt ]];
+        then 
+            cd ~/EPNro1/salida
+            sort -k5 -n -r FILENAME.txt | head  #de mayor a menor
+        else
+            echo "No existe el archivo FILENAME";
+        fi ;;
+    "5")
+        echo -n "Poner padrón: "
+        read PADRON
+        grep -r "$PADRON" FILENAME.txt ;;
+
+    "borrar") 
+        cd ~/EPNro1
+        mv consolidar.sh ~/EJ1 
+        rm -r ~/EPNro1 ;;
+    
+    # "$1") *borrar todo*
 esac
